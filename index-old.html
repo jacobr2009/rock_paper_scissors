@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+  <script src="math.js" type="text/javascript"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="game">
+    <ul class="choices">
+      <li class="choice" data-choice="rock">Rock</li>
+      <li class="choice" data-choice="paper">Paper</li>
+      <li class="choice" data-choice="scissors">Scissors</li>
+    </ul>
+  </div>
+
+</body>
+
+  <script>
+
+    let computerPlay = () => {
+      let randomNumber = math.randomInt(0,3);
+      let computerThrow;
+
+      if (randomNumber === 0) {
+        computerThrow = 'rock';
+      } else if (randomNumber === 1) {
+        computerThrow = 'paper';
+      } else {
+        computerThrow = 'scissors';
+      }
+
+      return computerThrow;
+    }
+
+    let playRockPaperScissors = (playerSelection, computerSelection) => {
+      playerSelection = playerSelection.toLowerCase();
+      computerSelection = computerSelection.toLowerCase();
+
+      console.log(`player chose ${playerSelection}`);
+      console.log(`computer chose ${computerSelection}`);
+
+      if (playerSelection === computerSelection) {
+        return 'tie';
+      } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        return 'win';
+      } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        return 'win';
+      } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        return 'win';
+      } else {
+        return 'lose'
+      }
+    }
+
+    let game = () => {
+      let playerScore = 0;
+      let computerScore = 0;
+      //for (let i = 0; i < 5; i++) {
+        let computerSelection = computerPlay();
+        let playerSelection = prompt('Choose rock, paper, or scissors');
+        confirm(`Are you sure you want to go with ${playerSelection}`) ? true : playerSelection = prompt('Choose rock, paper, or scissors');
+        let result = playRockPaperScissors(playerSelection, computerSelection);
+        if (result === 'win') {
+          playerScore++
+        } else if (result === 'lose') {
+          computerScore++
+        }
+      }
+      alert(`The final score is ${playerScore} points for the player and ${computerScore} points for the computer`)
+    }
+
+    game();
+
+  </script>
+</html>
