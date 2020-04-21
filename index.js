@@ -81,7 +81,6 @@ let computerPlay = () => {
       playerScore = 0;
       computerScore = 0;
       gameStatus = 'playing';
-      console.log('playing game');
       let gameButton = document.querySelector('button');
       gameButton.classList.add('clicked');
       
